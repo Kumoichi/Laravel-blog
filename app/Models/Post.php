@@ -6,6 +6,22 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class Post
 {
+    public $title;
+    public $excerpt;
+    public $date;
+    public $body;
+
+    // Constructor
+    public function __construct($title, $excerpt, $date, $body)
+    {
+        $this->title = $title;
+        $this->excerpt = $excerpt;
+        $this->date = $date;
+        $this->body = $body;
+    }
+
+
+
     public static function all(){
         $files =  File::files(resource_path("posts/"));
         
