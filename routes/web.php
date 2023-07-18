@@ -18,7 +18,7 @@ use League\CommonMark\Extension\FrontMatter\Data\LibYamlFrontMatterParser;
 */
 
 Route::get('/', function () {
-    //$files contain all files information like file name,  inside the posts folder
+    //$files contain all files information like file name, inside the posts folder
    
     return view('posts', ['posts' => Post::all()]);
     // $post = Post::all();

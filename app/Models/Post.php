@@ -23,10 +23,14 @@ class Post
         $this->slug = $slug;
     }
 
-
-
     public static function all(){
+        //by using function collect() you can use map
+        //this is like start of the for loop. collect is used for storing array.
         return collect(File::files(resource_path("posts")))
+        //iterates the value in the collect SplFileInfo. storing each files into $file. 
+        //it goes  through one by one. it is ->map is like for loop. 
+        //you $file exist for being parsed. one file parsed value is stored in one $document.
+        //now that $document has the all file information that is parsed.  
             ->map(fn($file) => YamlFrontMatter::parseFile($file))
             ->map(fn($document) => new Post(
             $document->title,
