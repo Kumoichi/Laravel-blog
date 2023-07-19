@@ -4,10 +4,10 @@
 <link rel="stylesheet" href="/app.css">
 <body>
     <article>
-        <h1><?=$post->title; ?></h2>
+        <h1>{{ $post->title}}</h2>
 
         <div>
-            <?= $post->body; ?>
+            {!! $post->body !!}
         </div>
     </article>
 

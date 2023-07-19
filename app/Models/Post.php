@@ -23,8 +23,7 @@ class Post
     }
 
     public static function all(){
-        
-
+        //ここキャッシュ必要かも
         return collect(File::files(resource_path('posts')))
         ->map(fn ($file) => YamlFrontMatter::parseFile($file))
         ->map(fn ($document) => new Post(
