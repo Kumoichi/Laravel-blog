@@ -23,6 +23,8 @@ class Post
     }
 
     public static function all(){
+        
+
         return collect(File::files(resource_path('posts')))
         ->map(fn ($file) => YamlFrontMatter::parseFile($file))
         ->map(fn ($document) => new Post(
@@ -32,11 +34,13 @@ class Post
         //body needs to have ()
         $document->body(), 
         $document->slug 
-        ));
+        ))
+        ->sortByDesc('date');
     }
 
     public static function find($slug){
 
+        //firstWhere finds the specific file which matches to $slug.
         return static::all()->firstWhere('slug', $slug);
     }
 }
