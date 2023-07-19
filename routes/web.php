@@ -17,16 +17,11 @@ use League\CommonMark\Extension\FrontMatter\Data\LibYamlFrontMatterParser;
 |
 */
 
-Route::get('/', function () {
-    //$files contain all files information like file name, inside the posts folder
-   
-    return view('posts', ['posts' => Post::all()]);
-    // $post = Post::all();
-    // return view ('posts', [
-    //     'posts' => $post
-    // ]);
-});
 
+Route::get('/', function () {
+    // Assuming you have a 'title' field in the 'Post' model, adjust accordingly if different.
+    return view('posts', ['posts' => Post::all()]);
+});
 
 Route::get('posts/{post}', function ($slug) {
     $post = Post::find($slug);
