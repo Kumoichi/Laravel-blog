@@ -1,18 +1,14 @@
-<!doctype html>
+<!-- This @extends way called Blade templating engine -->
+@extends ('layout')
 
-<head>
-<title>My blog</title>
-<link rel="stylesheet" href="app.css">
-</head>
-
-<body>
+@section('content')
 
 @foreach($posts as $post)
 <!-- If $loop->even is true (even iteration), it will set the class to "foobar".
 
 If $loop->even is false (odd iteration), it will set the class to an empty 
 string (''), effectively not adding any class. -->
-<article class="{{ $loop->even ? 'foobar' : ''}}">
+<article>
     <h1>
         <a href="/posts/{{ $post->slug }}">
             {{ $post->title }}
@@ -23,4 +19,5 @@ string (''), effectively not adding any class. -->
     </div>
 </article>  
 @endforeach  
-</body>
+
+@endsection
