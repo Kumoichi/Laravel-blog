@@ -42,4 +42,15 @@ class Post
         //firstWhere finds the specific file which matches to $slug.
         return static::all()->firstWhere('slug', $slug);
     }
+
+    public static function findOrFail($slug) {
+        $post = static::find($slug);
+
+        if(! $post) {
+            throw new ModelNotFoundException();
+        }
+
+        return $post;
+    }
+
 }
