@@ -19,7 +19,8 @@ use League\CommonMark\Extension\FrontMatter\Data\LibYamlFrontMatterParser;
 
 
 Route::get('/', function () {
-    // Assuming you have a 'title' field in the 'Post' model, adjust accordingly if different.
+    //getting data from posts table and assigning in it to 
+    //posts and then rendering that to posts.blade.php
     return view('posts', ['posts' => Post::all()]);
 });
 
