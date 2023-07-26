@@ -24,8 +24,15 @@ Route::get('/', function () {
     return view('posts', ['posts' => Post::all()]);
 });
 
-Route::get('posts/{post}', function ($id) {
-    $post = Post::findOrFail($id);
+//When a user visits a URL like /posts/my-first-post,
+// Laravel will automatically query the database for 
+//a Post model instance where the slug attribute matches
+// 'my-first-post'. It will then pass that instance to 
+//the function as the $post variable.
+
+// this function (Post $post) does the same thing as Post::findOrFail($post);
+Route::get('posts/{post:slug}', function (Post $post) {
+    // $post = Post::findOrFail($post);
     
     return view ('post', [
         'post' => $post
