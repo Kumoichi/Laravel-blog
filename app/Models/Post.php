@@ -11,12 +11,7 @@ class Post extends Model
     // You can use Post::create to make new column. this is called fillable property.
     protected $fillable = ['title', 'excerpt', 'body', 'slug', 'category_id'];
 
-    public function category()
-    {
-        //This method returns a Category model associated with 
-        //the current Post model based on the value of the
-        // category_id foreign key.
-        //one to many relationship. one is the foreignID inside the $post, many is the Category table data.
+    public function category() {
         return $this->belongsTo(Category::class);
     }
 }

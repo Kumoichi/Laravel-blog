@@ -9,11 +9,7 @@ class Category extends Model
 {
     use HasFactory;
 
-    public function posts()
-    {
-        //This method returns a Category model associated with 
-        //the current Post model based on the value of the
-        // category_id foreign key.
+    public function posts() {
         return $this->hasMany(Post::class);
     }
 }

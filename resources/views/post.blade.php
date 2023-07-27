@@ -3,10 +3,7 @@
 <article>
         <h1>{!! $post->title !!}</h2>
 
-        <!-- ここからの流れみとく -->
-        <p>
-            <a href="/categories/{{post->category->id}}">{{$post->category->name}}</a>
-        </p>
+       <p><a href="{{$post->category->slug}}">{{$post->category->name}}</a></p>
 
         <div>
             {!! $post->body !!}
@@ -15,4 +12,4 @@
 
     <a href="/">Go Back</a>
 
-</x-layout>　
+</x-layout>

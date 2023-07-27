@@ -20,27 +20,26 @@ use League\CommonMark\Extension\FrontMatter\Data\LibYamlFrontMatterParser;
 
 
 Route::get('/', function () {
-    //getting data from posts table and assigning in it to 
-    //posts and then rendering that to posts.blade.php
-    return view('posts', ['posts' => Post::all()]);
+
+    \Illuminate\Support\Facades\DB::listen(function ($query){
+        logger($query->sql, $query->bindings);
+        });  
+
+    return view('posts', ['posts' => Post::with('category')->get()]);
 });
 
-//When a user visits a URL like /posts/my-first-post,
-// Laravel will automatically query the database for 
-//a Post model instance where the slug attribute matches
-// 'my-first-post'. It will then pass that instance to 
-//the function as the $post variable.
 
-// this function (Post $post) does the same thing as Post::findOrFail($post);
 Route::get('posts/{post:slug}', function (Post $post) {
     // $post = Post::findOrFail($post);
-    
+  
     return view ('post', [
         'post' => $post
     ]);
 });
 
-Route::get('categories/{category}', function (Category $category) {
+//if you just have category, it looks for an id
+//if you have category:slug it looks for slug inside the category
+Route::get('categories/{category:slug}', function (Category $category) {
     return view ('posts', [
    
 // <!-- This route binds the 'Category' model based on the provided category ID.
