@@ -2,6 +2,7 @@
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\Route;
 use App\Models\Post;
+use App\Models\Category;
 use Illuminate\Support\Facades\File;
 use Spatie\YamlFrontMatter\YamlFrontMatter;
 use League\CommonMark\Extension\FrontMatter\Data\LibYamlFrontMatterParser;
@@ -38,3 +39,14 @@ Route::get('posts/{post:slug}', function (Post $post) {
         'post' => $post
     ]);
 });
+
+Route::get('categories/{category}', function (Category $category) {
+    return view ('posts', [
+   
+// <!-- This route binds the 'Category' model based on the provided category ID.
+//      The 'posts' view will display all posts associated with the selected category. -->
+
+        'posts' => $category->posts
+    ]);
+});
+    

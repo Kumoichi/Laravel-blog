@@ -13,10 +13,14 @@ class Post extends Model
 
     public function category()
     {
+        //This method returns a Category model associated with 
+        //the current Post model based on the value of the
+        // category_id foreign key.
+        //one to many relationship. one is the foreignID inside the $post, many is the Category table data.
         return $this->belongsTo(Category::class);
     }
 }
 
- 
+
 // to update the value in the column, use
 // $post->update(['excerpt' => 'Changed'])

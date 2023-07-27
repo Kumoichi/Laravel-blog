@@ -3,9 +3,9 @@
 <article>
         <h1>{!! $post->title !!}</h2>
 
-        
+        <!-- ここからの流れみとく -->
         <p>
-            <a href="#">{{$post->category->name}}</a>
+            <a href="/categories/{{post->category->id}}">{{$post->category->name}}</a>
         </p>
 
         <div>
@@ -15,4 +15,4 @@
 
     <a href="/">Go Back</a>
 
-</x-layout>
+</x-layout>　
