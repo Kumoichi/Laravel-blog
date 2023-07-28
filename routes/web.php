@@ -3,6 +3,7 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\Route;
 use App\Models\Post;
 use App\Models\Category;
+use App\Models\User;
 use Illuminate\Support\Facades\File;
 use Spatie\YamlFrontMatter\YamlFrontMatter;
 use League\CommonMark\Extension\FrontMatter\Data\LibYamlFrontMatterParser;
@@ -25,7 +26,7 @@ Route::get('/', function () {
         logger($query->sql, $query->bindings);
         });  
 
-    return view('posts', ['posts' => Post::with('category')->get()]);
+    return view('posts', ['posts' => Post::latest('created_at')->with('category','author')->get()]);
 });
 
 
@@ -46,5 +47,12 @@ Route::get('categories/{category:slug}', function (Category $category) {
 //      The 'posts' view will display all posts associated with the selected category. -->
 
         'posts' => $category->posts
+    ]);
+});
+
+
+Route::get('author/{author}', function (User $author) {
+    return view ('posts', [
+        'posts' => $author->posts
     ]);
 });
