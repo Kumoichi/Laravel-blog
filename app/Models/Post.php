@@ -11,6 +11,12 @@ class Post extends Model
     // You can use Post::create to make new column. this is called fillable property.
     protected $fillable = ['title', 'excerpt', 'body', 'slug', 'category_id'];
 
+    // Due to the $with variable, Laravel will include additional JOIN clauses 
+    //in the query to eagerly load the associated category and author models for each post.
+    // It will fetch the related data in a few queries instead of executing 
+    //separate queries for each post,
+    protected $with = ['category', 'author'];
+    
     public function category() {
         return $this->belongsTo(Category::class);
     }
