@@ -47,7 +47,9 @@ Route::get('categories/{category:slug}', function (Category $category) {
 // <!-- This route binds the 'Category' model based on the provided category ID.
 //      The 'posts' view will display all posts associated with the selected category. -->
 
-        'posts' => $category->posts
+        'posts' => $category->posts,
+        'currentCategory' => $category,
+        'categories' => Category::all()
     ]);
 });
 
@@ -55,6 +57,7 @@ Route::get('categories/{category:slug}', function (Category $category) {
 Route::get('author/{author:username}', function (User $author) {
     return view ('posts', [
         //at this point posts model will be send to the posts.blade
-        'posts' => $author->posts
+        'posts' => $author->posts,
+        'categories' => Category::all()
     ]);
 });
