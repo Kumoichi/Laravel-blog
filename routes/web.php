@@ -26,7 +26,8 @@ Route::get('/', function () {
         logger($query->sql, $query->bindings);
         });  
 
-    return view('posts', ['posts' => Post::latest('created_at')->get()]);
+    return view('posts', ['posts' => Post::latest('created_at')->get(),
+                            'categories' => Category::all()]);
 });
 
 
