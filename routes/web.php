@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Models\Post;
 use App\Models\Category;
 use App\Models\User;
+use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\File;
 use Spatie\YamlFrontMatter\YamlFrontMatter;
 use League\CommonMark\Extension\FrontMatter\Data\LibYamlFrontMatterParser;
@@ -20,24 +21,10 @@ use League\CommonMark\Extension\FrontMatter\Data\LibYamlFrontMatterParser;
 */
 
 
-Route::get('/', function () {
-
-    \Illuminate\Support\Facades\DB::listen(function ($query){
-        logger($query->sql, $query->bindings);
-        });  
-
-    return view('posts', ['posts' => Post::latest('created_at')->get(),
-                            'categories' => Category::all()]);
-})->name('home');
+Route::get('/', [PostController::class, 'index'])->name('home');
 
 
-Route::get('posts/{post:slug}', function (Post $post) {
-    // $post = Post::findOrFail($post);
-  
-    return view ('post', [
-        'post' => $post
-    ]);
-});
+Route::get('posts/{post:slug}', [PostController::class, 'show']);
 
 //if you just have category, it looks for an id
 //if you have category:slug it looks for slug inside the category
