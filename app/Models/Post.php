@@ -16,6 +16,13 @@ class Post extends Model
     // It will fetch the related data in a few queries instead of executing 
     //separate queries for each post,
     protected $with = ['category', 'author'];
+
+    //include scope inside the function name.
+    public function scopeFilter($query, array $filters)
+    {
+        $query->when($filters['search'] ?? false, fn($query, $search)=>
+            $query->where('title', 'like', '%' . $search . '%'));
+    }
     
     public function category() {
         return $this->belongsTo(Category::class);

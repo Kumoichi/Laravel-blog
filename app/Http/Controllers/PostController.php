@@ -9,9 +9,9 @@ use App\Models\Category;
 class PostController extends Controller
 {
     public function index(){      
-
     return view('posts', [
-        'posts' => $this->getPost(),    
+        //filter is calling the scopeFilter method
+        'posts' => Post::latest()->filter(request(['search']))->get(),    
         'categories' => Category::all()
     ]);
 }
@@ -21,17 +21,5 @@ class PostController extends Controller
         return view ('post', [
             'post' => $post
         ]);
-    }
-
-    protected function getPost(){
-        $postsQuery = Post::latest();
-
-    if (request('search')) {
-        $postsQuery->where('title', 'like', '%' . request('search') . '%');
-        
-    }
-
-    $posts = $postsQuery->get();
-    return $posts;
-    }
+    }    
 }
