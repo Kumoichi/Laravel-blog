@@ -26,19 +26,6 @@ Route::get('/', [PostController::class, 'index'])->name('home');
 
 Route::get('posts/{post:slug}', [PostController::class, 'show']);
 
-//if you just have category, it looks for an id
-//if you have category:slug it looks for slug inside the category
-Route::get('categories/{category:slug}', function (Category $category) {
-    return view ('posts', [
-   
-// <!-- This route binds the 'Category' model based on the provided category ID.
-//      The 'posts' view will display all posts associated with the selected category. -->
-
-        'posts' => $category->posts,
-        'currentCategory' => $category,
-        'categories' => Category::all()
-    ]);
-})->name('category');
 
 
 Route::get('author/{author:username}', function (User $author) {
