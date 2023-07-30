@@ -25,10 +25,3 @@ Route::get('/', [PostController::class, 'index'])->name('home');
 
 Route::get('posts/{post:slug}', [PostController::class, 'show']);
 
-Route::get('author/{author:username}', function (User $author) {
-    return view ('posts', [
-        //at this point posts model will be send to the posts.blade
-        'posts' => $author->posts
-        
-    ]);
-});
