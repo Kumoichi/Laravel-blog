@@ -12,7 +12,9 @@ class PostController extends Controller
     return view('posts.index', [
         //filter is calling the scopeFilter method
         //adding a parameter of category
-        'posts' => Post::latest()->filter(request(['search','category', 'author']))->get()
+        'posts' => Post::latest()->filter(
+            request(['search','category', 'author'])
+            )->simplePaginate(6)->withQueryString()
         ]);
 }
 
