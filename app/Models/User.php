@@ -44,6 +44,13 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
+
+    // I need to follow this rule of settin function name as set~~Attribute
+    public function setPasswordAttribute($password)
+    {
+        $this->attributes['password'] = bcrypt($password);
+    }
+
     public function posts()
     {
         return $this->hasMany(Post::class);
