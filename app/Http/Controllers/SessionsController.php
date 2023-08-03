@@ -7,7 +7,6 @@ use Illuminate\Validation\ValidationException;
 
 class SessionsController extends Controller
 {
-
     public function create()
     {
         return view('sessions.create');
@@ -36,6 +35,4 @@ class SessionsController extends Controller
         auth()->logout();
         return redirect('/')->with('success', 'goodbye');
     }
-
-
 }

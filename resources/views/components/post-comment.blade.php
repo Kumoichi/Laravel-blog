@@ -11,7 +11,7 @@
                             <header class="mb-4">
                                 <strong class="font-bold">{{ $comment->author->username }}</strong>
                                 <p class="text-xs">Posted
-                                    <time>{{ $comment->created_at }}</time></p>
+                                    <time>{{ $comment->created_at->format('F j, Y, g:i a')}}</time></p>
                             </header>
                         <p>{{ $comment->body }}</p>                       
                      </div>
