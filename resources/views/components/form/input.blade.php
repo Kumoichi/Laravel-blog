@@ -7,9 +7,9 @@
             type="{{ $type }}"
             name="{{ $name }}"
             id="{{ $name }}"
-            value="{{ old($name)}}"
+    
             required
-            {{ $attributes }}>
-            
+            {{ $attributes->merge(['value' => old($name)]) }}>
+
             <x-form.error name="{{ $name }}" />
 </div>
