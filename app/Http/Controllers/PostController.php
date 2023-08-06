@@ -38,7 +38,7 @@ class PostController extends Controller
     public function store()
     {
         $attributes = request()->validate([
-            'title' => 'required',
+            'title' => "required|max:255",
             'thumbnail' => 'required|image',
             'slug' => ['required', Rule::unique('posts','slug')],
             'excerpt' => 'required',
