@@ -26,7 +26,13 @@
                     <a href="/admin/posts/{{ $post->slug }}/edit" class="text-indigo-600 hover:text-indigo-900">Edit</a>
                   </td>
 
-                  
+                  <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                    <form method="POST" action="/admin/posts/{{ $post->id }}">
+                        @csrf
+                        @method('DELETE')
+                        <button classs="text-xs text-gray-400">Delete</button>
+                    </form>
+                  </td>
                 </tr>
                 <?php endforeach; ?>
               </tbody>
