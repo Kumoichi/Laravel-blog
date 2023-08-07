@@ -1,13 +1,14 @@
 <x-layout>
 
 <x-setting :heading="'Edit Post: ' . $post->title"> 
-<form method="POST" action="/admin/posts" enctype="multipart/form-data">
+<form method="POST" action="/admin/posts/{{ $post->id}}" enctype="multipart/form-data">
             @csrf
+            @method('PATCH')
 
             <!-- : means binding -->
             <x-form.input name="title" :value="old('title', $post->title)"/>
             <x-form.input name="slug" :value="old('slug', $post->slug)"/>
-            <div>
+            <div>   
             <x-form.input name="thumbnail" type="file" :value="old('thumbnail', $post->thumbnail)" width="150"/>
             <img src="{{ asset($post->thumbnail) }}" alt="Thumbnail">
             </div>
